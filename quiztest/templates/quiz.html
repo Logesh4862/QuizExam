@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QUIZ</title>
+
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+body{
+	font-size: 20px;
+	font-family: 'Work Sans', sans-serif;
+	color: #333;
+  font-weight: 300;
+  text-align: center;
+  background-color: #f8f6f0;
+}
+h1{
+  font-weight: 300;
+  margin: 0px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #444;
+  color: #fff;
+}
+.question{
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.answers {
+  margin-bottom: 20px;
+  text-align: left;
+  display: inline-block;
+}
+.answers label{
+  display: block;
+  margin-bottom: 10px;
+}
+button{
+  font-family: 'Work Sans', sans-serif;
+	font-size: 22px;
+	background-color: #279;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+button:hover{
+	background-color: #38a;
+}
+
+.slide{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.active-slide{
+  opacity: 1;
+  z-index: 2;
+}
+.quiz-container{
+  position: relative;
+  height: 200px;
+  margin-top: 40px;
+}
+
+    </style>
+</head>
+<body>
+
+        <h1>Quiz on Computer Science</h1>
+
+        <form action="{% url 'valid' %}" method ="post">
+            {% csrf_token %}
+        <div class="quiz-container">
+            <h3>Question</h3>
+          <div id="quiz">
+              <h3>{{ques_opt.0}}</h3><br>
+              <input type="radio" name="option" value="{{ques_opt.1}}" required><label>{{ques_opt.1}}</label>
+              <input type="radio" name="option" value="{{ques_opt.2}}"><label>{{ques_opt.2}}</label>
+              <input type="radio" name="option" value="{{ques_opt.3}}"><label>{{ques_opt.3}}</label>
+              <input type="radio" name="option" value="{{ques_opt.4}}"><label>{{ques_opt.4}}</label>
+
+        </div>
+            <button id="submit" onlick="validate()">Submit Question</button>
+        </div>
+
+            </form>
+        <div id="results"></div>
+</body>
+</html>

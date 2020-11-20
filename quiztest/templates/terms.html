@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<br>
+<center> General Guidelines </center>>
+<br>
+1. Language. The quizzes are all in English.
+
+2. Quiz Participation, you will be asked to submit each question, you will not be able to change your selections.
+
+3. Cheating. Anyone suspected by an official of cheating will be disqualified. You must not use any mobile device during a quiz competition.
+
+4. Challenges. If at any time you think your answer should be accepted, then you must complete a challenge slip.
+
+5. Time will be recorded for complete quiz.
+
+6. A Test Consists of 10 Multiple Choice Question, Each question have 4 Choices
+
+7. Every Question must be answered. Navigate between the questions is not allowed.
+
+8. Quiz must be submitted or else score wil not considered.
+
+<form action="{% url 'question' %}" method="post">
+    {% csrf_token %}
+    <input type="checkbox" name="check" required>
+    <label>I accept terms and conditions</label>
+    <input type="Submit" value="Start Quiz">
+</form>
+
+</body>
+
+
+</html>
