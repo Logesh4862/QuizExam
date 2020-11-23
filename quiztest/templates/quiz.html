@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>QUIZ</title>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
     <style>
     @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
@@ -70,28 +72,44 @@ button:hover{
   margin-top: 40px;
 }
 
+h2{
+    color: #fff;
+    background-color: #38a;
+}
+
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
         <h1>Quiz on Computer Science</h1>
 
-        <form action="{% url 'valid' %}" method ="post">
+        <form action="{% url 'answer_validate' %}" method ="post">
             {% csrf_token %}
         <div class="quiz-container">
-            <h3>Question</h3>
-          <div id="quiz">
-              <h3>{{ques_opt.0}}</h3><br>
-              <input type="radio" name="option" value="{{ques_opt.1}}" required><label>{{ques_opt.1}}</label>
-              <input type="radio" name="option" value="{{ques_opt.2}}"><label>{{ques_opt.2}}</label>
-              <input type="radio" name="option" value="{{ques_opt.3}}"><label>{{ques_opt.3}}</label>
-              <input type="radio" name="option" value="{{ques_opt.4}}"><label>{{ques_opt.4}}</label>
+          <div id="quiz" align="left">
+              <h3 align="left">{{ques_opt.0}}</h3><br>
+              <input type="radio" name="option" value="{{ques_opt.1}}" required><label>{{ques_opt.1}}</label><br>
+              <input type="radio" name="option" value="{{ques_opt.2}}"><label>{{ques_opt.2}}</label><br>
+              <input type="radio" name="option" value="{{ques_opt.3}}"><label>{{ques_opt.3}}</label><br>
+              <input type="radio" name="option" value="{{ques_opt.4}}"><label>{{ques_opt.4}}</label><br>
 
+        </div><br><br>
+            <button id="submit" type="submit" {{sub_val}} }>Submit Question</button>
         </div>
-            <button id="submit" onlick="validate()">Submit Question</button>
+            </form><br><br><br>
+        <a href="{% url 'show_questions' %}"><button {{nxt_val}}> Next Question </button></a>
+        <div id="results">
+            <h2>{{ques_opt.5}}</h2>
         </div>
 
-            </form>
-        <div id="results"></div>
+<script>
+$(document).ready(function() {
+function disableBack() { window.history.forward() }
+
+window.onload = disableBack();
+window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+});
+</script>
+
 </body>
 </html>

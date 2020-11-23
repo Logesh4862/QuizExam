@@ -19,7 +19,9 @@ from .import views
 
 urlpatterns = (
     path('admin/', admin.site.urls),
-    path('', views.fun_login, name="fun_login"),
-    path('quiz/', views.question, name="question"),
-    path('quiz/ans', views.answer_valid, name="valid"),
+    path('', views.user_validate, name="user_validate"),
+    path('exit/', views.set_default, name="set_default"),
+    path('quiz/', views.show_questions, name="show_questions"),
+    path('quiz/ans', views.answer_validate, name="answer_validate"),
+
 )

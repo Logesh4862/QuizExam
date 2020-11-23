@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Online Exam</title>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
     <style>
 /* Bordered form */
 form {
@@ -78,8 +80,8 @@ span.psw {
     </style>
 </head>
 
-
-<form name="form" action = "{% url 'fun_login' %}" method="post">
+<body oncontextmenu="return false;">
+<form name="form" action = "{% url 'user_validate' %}" method="post">
     {% csrf_token %}
     <div class="imgcontainer">
         {% load static %}
@@ -94,23 +96,23 @@ span.psw {
         <input type="password" placeholder="Enter Password" name="psw" required>
 
         <button type="submit">Login</button>
-
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
 
     <div>
-        <center>
-            {{Error}}
-        </center>
+        <h4><center>{{Error}}</center></h4><br>
     </div>
 </form>
 
+<script>
+$(document).ready(function() {
+function disableBack() { window.history.forward() }
 
+window.onload = disableBack();
+window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+});
+</script>
+
+
+</body>
 </html>

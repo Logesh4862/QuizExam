@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+    <style>
+        button{
+  font-family: 'Work Sans', sans-serif;
+	font-size: 22px;
+	background-color: #279;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+	align: center;
+}
+button:hover{
+	background-color: #38a;
+}
+
+  h1{
+    color: #fff;
+    background-color: #38a;
+}
+h3{
+color: #38a;
+}
+    </style>
+
+
+
+</head>
+<body >
+
+    <h1 align="center">Congratulations</h1>
+    <h3 align="center">Your Score is {{mark}} out of 10</h3>
+    <form action="{% url 'set_default' %}" method="post">
+        {% csrf_token %}
+        <button type="submit"> End Quiz </button>
+    </form>
+
+
+<script>
+$(document).ready(function() {
+function disableBack() { window.history.forward() }
+
+window.onload = disableBack();
+window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+});
+
+</script>
+
+
+</body>
+</html>
