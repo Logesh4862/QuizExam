@@ -13,6 +13,25 @@ sub = []
 mark = 0
 
 
+def create_user(request):
+    u_name = request.POST['uname']
+    u_pass = request.POST['psw']
+    cursor = connection.cursor()
+    cursor.execute('select * from login_details where user_id=%s', [u_name])
+    result = cursor.fetchall()
+    if len(result) == 0:
+        cursor.execute("insert into login_details(id,user_id,password)"
+                       "values(%s,%s,%s)",
+                       (u_name, u_name, u_pass))
+        return render(request, 'index.html', {'Error': "New User Created Successfully"})
+    else:
+        return render(request, "index.html", {'Error': 'New User Creation Failed!! User Already Exists'})
+
+
+def new_user(request):
+    return render(request, 'new_user.html')
+
+
 def set_default(request):
     global count, mark
     count = 10
@@ -78,8 +97,8 @@ def user_validate(request):
             if str(uname) == str(results[0][0]) and str(user_pass) == str(results[0][1]):
                 return render(request, "terms.html", {'Login': results[0],})
             else:
-                return render(request, "index.html", {'Error': 'Invbh Login Details'})
+                return render(request, "index.html", {'Error': 'Invalid Login Details'})
         else:
-            return render(request, "index.html", {'Error': 'Invalid Ljn Details'})
+            return render(request, "index.html", {'Error': 'Invalid Login Details'})
     else:
         return render(request, "index.html", {'Error': ''})

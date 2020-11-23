@@ -23,5 +23,7 @@ urlpatterns = (
     path('exit/', views.set_default, name="set_default"),
     path('quiz/', views.show_questions, name="show_questions"),
     path('quiz/ans', views.answer_validate, name="answer_validate"),
+    path('new/', views.new_user, name='new_user'),
+    path('new/cu', views.create_user, name='create_user'),
 
 )

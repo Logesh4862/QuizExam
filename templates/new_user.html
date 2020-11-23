@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Creation</title>
+    <style>
+        body{
+	font-size: 20px;
+	font-family: 'Work Sans', sans-serif;
+	color: #333;
+  font-weight: 300;
+  text-align: center;
+  background-color: #f8f6f0;
+}
+
+form {
+  border: 3px solid #f1f1f1;
+}
+
+
+input[type=number], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.container {
+  padding: 16px;
+}
+
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+
+}
+    </style>
+</head>
+<body>
+    <form action="{% url 'create_user' %}" method="post">
+        {% csrf_token %}
+        <h3>Become a User</h3>
+         <div class="container">
+        <label name="uname"><b>Username</b></label>
+        <input type="number" placeholder="Enter Username" name="uname" required maxlength="7">
+
+        <label name="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required maxlength="10">
+
+        <button type="submit">Create User</button>
+    </div>
+
+    </form>
+
+    <h3><center>Keep Username and Password Remember, it cannot be recovered</center></h3>
+</body>
+</html>
